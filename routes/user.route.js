@@ -28,6 +28,17 @@ userRouter.post("/register", async (req, res) => {
 });
 
 
+userRouter.get("/alluser", async (req, res) => {
+  
+  try {
+    const user = await UserModel.find();
+    res.status(200).json(user);
+  } catch (err) {
+    res.status(400).json({ err: message });
+  }
+});
+
+
 userRouter.post("/login", async (req, res) => {
   const { email, password } = req.body;
   try {
